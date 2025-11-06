@@ -41,7 +41,7 @@
         android:id="@+id/registerLogo"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:src="@drawable/arrecife_de_coral"
+        android:src="@drawable/fernando_torres"
         app:layout_constraintTop_toTopOf="@id/registerGLh1"
         app:layout_constraintEnd_toEndOf="@id/registerGLv2"
         app:layout_constraintStart_toStartOf="@id/registerGLv1"
@@ -159,7 +159,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerTILpasswordDoubleCheck"/>
+        app:layout_constraintTop_toBottomOf="@id/registerTILpasswordDoubleCheck"/>
 
     <TextView
         android:id="@+id/registerTVRegister"

@@ -9,4 +9,6 @@
     <color name="amarillo">#F5E54C</color>
     <color name="rosa">#F54C8D</color>
     <color name="magentaRojizo">#F5253A</color>
+    <color name="cespedClaro">#8BC34A</color>
+    <color name="cespedOscuro">#388E3C</color>
 </resources>

@@ -31,8 +31,24 @@ public class MainActivity extends AppCompatActivity {
         Button mainButton = findViewById(R.id.mainButton);
         TextView mainTV = findViewById(R.id.mainTV);
 
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+
+        String saludoInicial = "¡Bienvenido/a!";
+
+        // Verificación para que no craashee. Hay datos del Login?
+        if (bundle != null) {
+            // Usamos la clave correcta desde Login.java
+            String userName = bundle.getString("EXTRA_USER");
+
+            if (userName != null && !userName.isEmpty()) {
+                saludoInicial = "¡Bienvenido/a de nuevo, " + userName + "!";
+            }
+        }
+
+        mainTV.setText(saludoInicial);
+
         contador = 0;
-        mainTV.setText(String.valueOf(contador));
 
         mainButton.setOnClickListener(new View.OnClickListener() {
             @Override

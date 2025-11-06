@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -17,10 +16,9 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.textfield.TextInputLayout;
 
-import org.mindrot.jbcrypt.BCrypt;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import android.util.Log; // Necesario para la depuración del guardado
 
 public class Register extends AppCompatActivity {
 
@@ -40,9 +38,6 @@ public class Register extends AppCompatActivity {
         TextInputLayout registerTILpassword = findViewById(R.id.registerTILpassword);
         TextInputLayout registerTILpasswordDoubleChek = findViewById(R.id.registerTILpasswordDoubleCheck);
 
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = sharedPref.edit();
-
         FormUtils formUtils = new FormUtils();
 
         Button registerButton = findViewById(R.id.registerButton);
@@ -50,14 +45,13 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 boolean canContinue = true;
+
                 if (formUtils.isTILEmpty(registerTILuserName)){
-                    //Toast.makeText(Register.this, "Nombre vacío", Toast.LENGTH_SHORT).show();
                     registerTILuserName.setErrorEnabled(true);
                     registerTILuserName.setError("Nombre vacío");
                     canContinue = false;
                 }
                 if (!isEmailCorrect(registerTILemail)) {
-                    //Toast.makeText(Register.this, "Email incorrecto", Toast.LENGTH_SHORT).show();
                     registerTILemail.setErrorEnabled(true);
                     registerTILemail.setError("Tu email está mal escrito");
                     canContinue = false;
@@ -75,12 +69,23 @@ public class Register extends AppCompatActivity {
                 }
 
                 if (canContinue) {
-                    editor.putString("userName",String.valueOf(registerTILuserName.getEditText().getText()));
-                    editor.putString("email",String.valueOf(registerTILemail.getEditText().getText()));
-                    editor.putString("password", formUtils.generateHashedPassword(formUtils.getTILText(registerTILpassword)));
+                    SharedPreferences sharedPref = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPref.edit();
+
+                    String userName = formUtils.getTILText(registerTILuserName);
+                    String email = formUtils.getTILText(registerTILemail);
+                    String hashedPassword = formUtils.generateHashedPassword(formUtils.getTILText(registerTILpassword));
+
+                    editor.putString("userName", userName);
+                    editor.putString("email", email);
+                    editor.putString("password", hashedPassword); // GUARDA EL HASH SEGURO
+
                     editor.apply();
 
-                    Intent intent = new Intent(Register.this, MainActivity.class);
+                    Log.d("REGISTRO_TEST", "Hash GUARDADO: " + sharedPref.getString("password", "ERROR"));
+
+
+                    Intent intent = new Intent(Register.this, Login.class);
                     startActivity(intent);
                 }
 

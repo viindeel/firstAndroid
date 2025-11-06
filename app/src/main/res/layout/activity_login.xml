@@ -41,7 +41,7 @@
         android:id="@+id/loginLogo"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:src="@drawable/arrecife_de_coral"
+        android:src="@drawable/fernando_torres"
         app:layout_constraintTop_toTopOf="@id/loginGLh1"
         app:layout_constraintEnd_toEndOf="@id/loginGLv2"
         app:layout_constraintStart_toStartOf="@id/loginGLv1"
@@ -58,7 +58,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/loginLogo"
         android:textSize="40sp"
-        android:fontFamily="@font/maglisto"
+        android:fontFamily="@font/nueva"
         />
 
 
@@ -91,7 +91,7 @@
         app:layout_constraintTop_toBottomOf="@id/loginTILuserName"
         app:layout_constraintStart_toStartOf="@id/loginGLv1"
         app:layout_constraintEnd_toEndOf="@id/loginGLv2"
-        android:layout_marginTop="10dp"
+        android.layout.marginTop="10dp"
         app:startIconDrawable="@drawable/ic_key"
         app:passwordToggleEnabled="true"
         >
@@ -114,7 +114,8 @@
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginTILpassword"/>
+        android:fontFamily="@font/nueva"
+        app:layout_constraintTop_toBottomOf="@id/loginTILpassword"/>
 
     <TextView
         android:id="@+id/loginTVRegister"
@@ -123,6 +124,7 @@
         android:layout_marginTop="20dp"
         android:textStyle="italic"
         android:text="¿Aún no te has registrado todavía?"
+        android:fontFamily="@font/pompiere"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/loginButton" />
