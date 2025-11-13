@@ -13,7 +13,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
+
     Button mainButton;
+    Button btnIrCalculadora;
     TextView mainTV;
     int contador;
 
@@ -22,34 +24,29 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        Button mainButton = findViewById(R.id.mainButton);
-        TextView mainTV = findViewById(R.id.mainTV);
+        mainButton = findViewById(R.id.mainButton);
+        mainTV = findViewById(R.id.mainTV);
+        btnIrCalculadora = findViewById(R.id.btnIrCalculadora);
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-
         String saludoInicial = "¡Bienvenido/a!";
-
-        // Verificación para que no craashee. Hay datos del Login?
         if (bundle != null) {
-            // Usamos la clave correcta desde Login.java
             String userName = bundle.getString("EXTRA_USER");
-
             if (userName != null && !userName.isEmpty()) {
                 saludoInicial = "¡Bienvenido/a de nuevo, " + userName + "!";
             }
         }
-
         mainTV.setText(saludoInicial);
 
         contador = 0;
-
         mainButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,5 +54,15 @@ public class MainActivity extends AppCompatActivity {
                 mainTV.setText(String.valueOf(contador));
             }
         });
+
+        if (btnIrCalculadora != null) {
+            btnIrCalculadora.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(MainActivity.this, Calculator.class);
+                    startActivity(i);
+                }
+            });
+        }
     }
 }
