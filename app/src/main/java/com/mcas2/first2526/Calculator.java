@@ -58,7 +58,7 @@ public class Calculator extends AppCompatActivity {
             }
         };
 
-        int[] opIds = {R.id.button16, R.id.button9, R.id.button5, R.id.button1};
+        int[] opIds = {R.id.button16, R.id.button9, R.id.button5, R.id.button1, R.id.button2};
         for (int id : opIds) {
             Button btn = findViewById(id);
             if (btn != null) btn.setOnClickListener(opListener);
@@ -101,6 +101,9 @@ public class Calculator extends AppCompatActivity {
                     break;
                 case "-":
                     resultado = num1 - num2;
+                    break;
+                case "%":
+                    resultado = num1 % num2;
                     break;
                 case "*":
                     resultado = num1 * num2;
