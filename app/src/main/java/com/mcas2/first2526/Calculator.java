@@ -12,14 +12,13 @@ public class Calculator extends AppCompatActivity {
     private double num1 = 0;
     private double num2 = 0;
     private String operacion = "";
-    private boolean isNewOp = true; // Para saber si debemos limpiar la pantalla al escribir
+    private boolean isNewOp = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calculator_main);
 
-        // 1. Vincular la pantalla
         tvResultado = findViewById(R.id.pantallaResultados);
 
         View.OnClickListener numberListener = new View.OnClickListener() {
@@ -65,7 +64,6 @@ public class Calculator extends AppCompatActivity {
             if (btn != null) btn.setOnClickListener(opListener);
         }
 
-        // 4. Botón Igual (=)
         Button btnIgual = findViewById(R.id.button20);
         if (btnIgual != null) {
             btnIgual.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +74,6 @@ public class Calculator extends AppCompatActivity {
             });
         }
 
-        // 5. Botón Limpiar (C)
         Button btnClear = findViewById(R.id.button4);
         if (btnClear != null) {
             btnClear.setOnClickListener(new View.OnClickListener() {
@@ -92,7 +89,6 @@ public class Calculator extends AppCompatActivity {
         }
     }
 
-    // Lógica matemática
     private void calcular() {
         String aux = tvResultado.getText().toString();
         if (!aux.isEmpty() && !operacion.isEmpty()) {
@@ -106,8 +102,7 @@ public class Calculator extends AppCompatActivity {
                 case "-":
                     resultado = num1 - num2;
                     break;
-                case "*": // Asegúrate de que el texto del botón en XML sea "*" o "x"
-                case "x":
+                case "*":
                     resultado = num1 * num2;
                     break;
                 case "/":
@@ -120,7 +115,7 @@ public class Calculator extends AppCompatActivity {
                     break;
             }
             tvResultado.setText(String.valueOf(resultado));
-            isNewOp = true; // Listo para la siguiente operación
+            isNewOp = true;
         }
     }
 }
