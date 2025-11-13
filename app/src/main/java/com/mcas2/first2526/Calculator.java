@@ -87,7 +87,34 @@ public class Calculator extends AppCompatActivity {
                 }
             });
         }
+
+        Button btnMasMenos = findViewById(R.id.button3);
+        if (btnMasMenos != null) {
+            btnMasMenos.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String aux = tvResultado.getText().toString();
+                    if (!aux.isEmpty() && !aux.equals("0")) {
+                        try {
+                            double valor = Double.parseDouble(aux);
+                            // Multiplicamos por -1 para cambiar el signo
+                            valor = valor * -1;
+
+                            // Truco estético si es entero ( 5.0), quita el .0 para que quede bonito
+                            if (valor % 1 == 0) {
+                                tvResultado.setText(String.valueOf((int) valor));
+                            } else {
+                                tvResultado.setText(String.valueOf(valor));
+                            }
+                        } catch (NumberFormatException e) {
+                        }
+                    }
+                }
+            });
+        }
     }
+
+
 
     private void calcular() {
         String aux = tvResultado.getText().toString();
