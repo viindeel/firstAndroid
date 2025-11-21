@@ -51,7 +51,7 @@ Esta sección está organizada en dos pestañas utilizando un `ViewPager`:
 
 **Pantalla Principal con Saludo:**
 
-![Captura de pantalla de la pantalla de bienvenida con un saludo personalizado .](res/drawable/bienvenida.png)
+![Captura de pantalla de la pantalla de bienvenida con un saludo personalizado .](bienvenida.png)
 
 **Pestañas de Equipos y Selecciones:**
 
@@ -59,7 +59,7 @@ Esta sección está organizada en dos pestañas utilizando un `ViewPager`:
 
 **Diálogo para Cambiar Nombre:**
 
-![Captura de pantalla del AlertDialog personalizado para cambiar el nombre de un equipo o selección.](res/drawable/dialogo_cambiar_nombre.png)
+![Captura de pantalla del AlertDialog personalizado para cambiar el nombre de un equipo o selección.](/dialogo_cambiar_nombre.png)
 ![Captura de pantalla del elemento de CardView con el nombre actualizado.](res/drawable/nombre_cambiado_seleccion.png)
 
 **Calculadora:**
