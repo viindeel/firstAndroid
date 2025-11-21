@@ -22,7 +22,8 @@ public class Equipos extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View vistaEquipos = inflater.inflate(R.layout.fragment_equipos, container, false);
+        View vistaEquipos = inflater.inflate(R.layout.fragment_equipos, container, false); // Convierte el XML en una vista
+
 
         CardView card1 = vistaEquipos.findViewById(R.id.tarjeta1).findViewById(R.id.tarjeta);
         CardView card2 = vistaEquipos.findViewById(R.id.tarjeta2).findViewById(R.id.tarjeta);

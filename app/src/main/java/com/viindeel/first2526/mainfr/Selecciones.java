@@ -22,7 +22,7 @@ public class Selecciones extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View vistaSelecciones = inflater.inflate(R.layout.fragment_selecciones, container, false);
+        View vistaSelecciones = inflater.inflate(R.layout.fragment_selecciones, container, false); // Convierte el XML en una vista
 
         CardView card1 = vistaSelecciones.findViewById(R.id.seleccion1).findViewById(R.id.tarjeta);
         CardView card2 = vistaSelecciones.findViewById(R.id.seleccion2).findViewById(R.id.tarjeta);
@@ -55,7 +55,7 @@ public class Selecciones extends Fragment {
 
     public void mostrarDialogoDeAlerta(CardView cardView) {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-        LayoutInflater inflater = requireActivity().getLayoutInflater(); // convierte el XML en una vista
+        LayoutInflater inflater = requireActivity().getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.alert_dialog_custom, null);
         builder.setView(dialogView);
 
