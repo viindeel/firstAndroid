@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import java.util.Locale;
 
 public class Calculator extends AppCompatActivity {
 
@@ -27,7 +28,7 @@ public class Calculator extends AppCompatActivity {
             String buttonText = b.getText().toString();
             String currentText = tvResultado.getText().toString();
 
-            if (isNewOp || currentText.equals("Error")) {
+            if (isNewOp || currentText.equals(getString(R.string.error))) {
                 tvResultado.setText("");
                 isNewOp = false;
                 currentText = "";
@@ -57,7 +58,7 @@ public class Calculator extends AppCompatActivity {
             String op = b.getText().toString();
             String aux = tvResultado.getText().toString();
 
-            if (aux.equals("Error") || aux.isEmpty()) {
+            if (aux.equals(getString(R.string.error)) || aux.isEmpty()) {
                 return;
             }
 
@@ -100,7 +101,7 @@ public class Calculator extends AppCompatActivity {
         if (btnMasMenos != null) {
             btnMasMenos.setOnClickListener(v -> {
                 String aux = tvResultado.getText().toString();
-                if (!aux.isEmpty() && !aux.equals("0") && !aux.equals("Error")) {
+                if (!aux.isEmpty() && !aux.equals("0") && !aux.equals(getString(R.string.error))) {
                     double valor = safeParseDouble(aux);
                     valor = valor * -1;
                     tvResultado.setText(formatResult(valor));
@@ -112,7 +113,7 @@ public class Calculator extends AppCompatActivity {
     private void calcular() {
         String aux = tvResultado.getText().toString();
 
-        if (aux.isEmpty() || operacion.isEmpty() || aux.equals("Error") || aux.equals(".")) {
+        if (aux.isEmpty() || operacion.isEmpty() || aux.equals(getString(R.string.error)) || aux.equals(".")) {
             return;
         }
 
@@ -140,7 +141,7 @@ public class Calculator extends AppCompatActivity {
         }
 
         if (error) {
-            tvResultado.setText("Error");
+            tvResultado.setText(R.string.error);
         } else {
             tvResultado.setText(formatResult(resultado));
         }
@@ -150,7 +151,7 @@ public class Calculator extends AppCompatActivity {
 
 
     private double safeParseDouble(String str) {
-        if (str == null || str.isEmpty() || str.equals(".") || str.equals("Error")) {
+        if (str == null || str.isEmpty() || str.equals(".") || str.equals(getString(R.string.error))) {
             return 0;
         }
         try {
@@ -162,7 +163,7 @@ public class Calculator extends AppCompatActivity {
 
     private String formatResult(double val) {
         if (val == (long) val) {
-            return String.format("%d", (long) val);
+            return String.format(Locale.US, "%d", (long) val);
         } else {
             return String.valueOf(val);
         }
