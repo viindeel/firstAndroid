@@ -9,34 +9,34 @@ La aplicación se divide en varias secciones, cada una con sus propias funcional
 ### 1. Sistema de Autenticación
 
 - **Registro de Usuario:**
-  - Un formulario permite a los nuevos usuarios registrarse con un nombre de usuario, email y contraseña.
-  - Se realizan validaciones para asegurar que todos los campos estén completos y que las contraseñas introducidas coincidan.
-  - Si hay un error, se muestran mensajes informativos al usuario.
+    - Un formulario permite a los nuevos usuarios registrarse con un nombre de usuario, email y contraseña.
+    - Se realizan validaciones para asegurar que todos los campos estén completos y que las contraseñas introducidas coincidan.
+    - Si hay un error, se muestran mensajes informativos al usuario.
 
 - **Login de Usuario:**
-  - Los usuarios registrados pueden acceder a la aplicación a través de una pantalla de login.
+    - Los usuarios registrados pueden acceder a la aplicación a través de una pantalla de login.
 
 ### 2. Pantalla Principal y Navegación
 
 - **Mensaje de Bienvenida:** Tras iniciar sesión, el usuario es recibido con un saludo personalizado que incluye su nombre.
 - **Navegación:** Desde la pantalla principal, se puede acceder a dos secciones principales:
-  - La sección de Equipos y Selecciones.
-  - Una Calculadora.
+    - La sección de Equipos y Selecciones.
+    - Una Calculadora.
 
 ### 3. Galería de Equipos y Selecciones
 
 Esta sección está organizada en dos pestañas utilizando un `ViewPager`:
 
 - **Pestaña "Equipos":**
-  - Muestra una lista vertical de tarjetas (`CardView`).
-  - Cada tarjeta contiene el escudo y el nombre de un equipo de fútbol.
+    - Muestra una lista vertical de tarjetas (`CardView`).
+    - Cada tarjeta contiene el escudo y el nombre de un equipo de fútbol.
 
 - **Pestaña "Selecciones":**
-  - Sigue la misma estructura, pero muestra tarjetas con las banderas y nombres de selecciones nacionales.
+    - Sigue la misma estructura, pero muestra tarjetas con las banderas y nombres de selecciones nacionales.
 
 - **Funcionalidad Extra (Bonus):**
-  - Al hacer clic en cualquier tarjeta (ya sea de un equipo o una selección), se abre un **diálogo de alerta personalizado** (`AlertDialog`).
-  - Este diálogo permite al usuario **escribir un nuevo nombre** y, al pulsar "Aceptar", el texto de la tarjeta se actualiza dinámicamente.
+    - Al hacer clic en cualquier tarjeta (ya sea de un equipo o una selección), se abre un **diálogo de alerta personalizado** (`AlertDialog`).
+    - Este diálogo permite al usuario **escribir un nuevo nombre** y, al pulsar "Aceptar", el texto de la tarjeta se actualiza dinámicamente.
 
 ### 4. Calculadora
 
@@ -46,22 +46,22 @@ Esta sección está organizada en dos pestañas utilizando un `ViewPager`:
 
 **Pantalla de Login y Registro:**
 
-![Captura de pantalla de la pantalla de login.](res/drawable/login.png)
-![Captura de pantalla de la pantalla de registro.](res/drawable/register.png)
+![Captura de pantalla de la pantalla de login.](app/src/main/res/drawable/login.png)
+![Captura de pantalla de la pantalla de registro.](app/src/main/res/drawable/register.png)
 
 **Pantalla Principal con Saludo:**
 
-![Captura de pantalla de la pantalla de bienvenida con un saludo personalizado .](bienvenida.png)
+![Captura de pantalla de la pantalla de bienvenida con un saludo personalizado.](app/src/main/res/drawable/bienvenida.png)
 
 **Pestañas de Equipos y Selecciones:**
 
-![Captura de pantalla de la sección de pestañas mostrando la lista de equipos y selecciones.](res/drawable/juego_nombres.png)
+![Captura de pantalla de la sección de pestañas mostrando la lista de equipos y selecciones.](app/src/main/res/drawable/juego_nombres.png)
 
 **Diálogo para Cambiar Nombre:**
 
-![Captura de pantalla del AlertDialog personalizado para cambiar el nombre de un equipo o selección.](/dialogo_cambiar_nombre.png)
-![Captura de pantalla del elemento de CardView con el nombre actualizado.](res/drawable/nombre_cambiado_seleccion.png)
+![Captura de pantalla del AlertDialog personalizado para cambiar el nombre de un equipo o selección.](app/src/main/res/drawable/dialogo_cambiar_nombre.png)
+![Captura de pantalla del elemento de CardView con el nombre actualizado.](app/src/main/res/drawable/nombre_cambiado_seleccion.png)
 
 **Calculadora:**
 
-![Captura de pantalla de la Activity de la calculadora.](res/drawable/calculadora.png)
+![Captura de pantalla de la Activity de la calculadora.](app/src/main/res/drawable/calculadora.png)
