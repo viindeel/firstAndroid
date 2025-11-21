@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Calculator extends AppCompatActivity {
@@ -12,7 +13,7 @@ public class Calculator extends AppCompatActivity {
     private double num1 = 0;
     private double num2 = 0;
     private String operacion = "";
-    private boolean isNewOp = true; // Flag para saber si se ha pulsado un operador nuevo
+    private boolean isNewOp = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,15 +24,24 @@ public class Calculator extends AppCompatActivity {
 
         View.OnClickListener numberListener = v -> {
             Button b = (Button) v;
-            if (isNewOp) {
+            String buttonText = b.getText().toString();
+            String currentText = tvResultado.getText().toString();
+
+            if (isNewOp || currentText.equals("Error")) {
                 tvResultado.setText("");
                 isNewOp = false;
+                currentText = "";
             }
-            String currentText = tvResultado.getText().toString();
-            if (b.getText().toString().equals(".") && currentText.contains(".")) {
+
+            if (buttonText.equals(".") && currentText.contains(".")) {
                 return;
             }
-            tvResultado.append(b.getText().toString());
+
+            if (buttonText.equals(".") && currentText.isEmpty()) {
+                tvResultado.append("0.");
+            } else {
+                tvResultado.append(buttonText);
+            }
         };
 
         int[] numberIds = {R.id.button17, R.id.button13, R.id.button14, R.id.button15, R.id.button12,
@@ -47,21 +57,21 @@ public class Calculator extends AppCompatActivity {
             String op = b.getText().toString();
             String aux = tvResultado.getText().toString();
 
-            if (op.equals("%")) {
-                if (!aux.isEmpty()) {
-                    double valor = Double.parseDouble(aux);
-                    double resultado = valor / 100;
-                    tvResultado.setText(String.valueOf(resultado));
-                    isNewOp = true;
-                }
+            if (aux.equals("Error") || aux.isEmpty()) {
                 return;
             }
 
-            if (!aux.isEmpty()) {
-                num1 = Double.parseDouble(aux);
-                operacion = op;
+            if (op.equals("%")) {
+                double valor = safeParseDouble(aux);
+                double resultado = valor / 100;
+                tvResultado.setText(formatResult(resultado));
                 isNewOp = true;
+                return;
             }
+
+            num1 = safeParseDouble(aux);
+            operacion = op;
+            isNewOp = true;
         };
 
         int[] opIds = {R.id.button16, R.id.button9, R.id.button5, R.id.button1, R.id.button2};
@@ -90,17 +100,10 @@ public class Calculator extends AppCompatActivity {
         if (btnMasMenos != null) {
             btnMasMenos.setOnClickListener(v -> {
                 String aux = tvResultado.getText().toString();
-                if (!aux.isEmpty() && !aux.equals("0")) {
-                    try {
-                        double valor = Double.parseDouble(aux);
-                        valor = valor * -1;
-                        if (valor % 1 == 0) {
-                            tvResultado.setText(String.valueOf((int) valor));
-                        } else {
-                            tvResultado.setText(String.valueOf(valor));
-                        }
-                    } catch (NumberFormatException e) {
-                    }
+                if (!aux.isEmpty() && !aux.equals("0") && !aux.equals("Error")) {
+                    double valor = safeParseDouble(aux);
+                    valor = valor * -1;
+                    tvResultado.setText(formatResult(valor));
                 }
             });
         }
@@ -108,31 +111,81 @@ public class Calculator extends AppCompatActivity {
 
     private void calcular() {
         String aux = tvResultado.getText().toString();
-        if (!aux.isEmpty() && !operacion.isEmpty()) {
-            num2 = Double.parseDouble(aux);
-            double resultado = 0;
 
-            switch (operacion) {
-                case "+":
-                    resultado = num1 + num2;
-                    break;
-                case "-":
-                    resultado = num1 - num2;
-                    break;
-                case "*":
-                    resultado = num1 * num2;
-                    break;
-                case "/":
-                    if (num2 != 0) {
-                        resultado = num1 / num2;
-                    } else {
-                        tvResultado.setText("Error");
-                        return;
-                    }
-                    break;
-            }
-            tvResultado.setText(String.valueOf(resultado));
-            isNewOp = true;
+        if (aux.isEmpty() || operacion.isEmpty() || aux.equals("Error") || aux.equals(".")) {
+            return;
         }
+
+        num2 = safeParseDouble(aux);
+        double resultado = 0;
+        boolean error = false;
+
+        switch (operacion) {
+            case "+":
+                resultado = num1 + num2;
+                break;
+            case "-":
+                resultado = num1 - num2;
+                break;
+            case "*":
+                resultado = num1 * num2;
+                break;
+            case "/":
+                if (num2 != 0) {
+                    resultado = num1 / num2;
+                } else {
+                    error = true;
+                }
+                break;
+        }
+
+        if (error) {
+            tvResultado.setText("Error");
+        } else {
+            tvResultado.setText(formatResult(resultado));
+        }
+
+        isNewOp = true;
+    }
+
+
+    private double safeParseDouble(String str) {
+        if (str == null || str.isEmpty() || str.equals(".") || str.equals("Error")) {
+            return 0;
+        }
+        try {
+            return Double.parseDouble(str);
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
+
+    private String formatResult(double val) {
+        if (val == (long) val) {
+            return String.format("%d", (long) val);
+        } else {
+            return String.valueOf(val);
+        }
+    }
+
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putDouble("NUM1", num1);
+        outState.putDouble("NUM2", num2);
+        outState.putString("OPERACION", operacion);
+        outState.putBoolean("IS_NEW_OP", isNewOp);
+        outState.putString("TEXTO_PANTALLA", tvResultado.getText().toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        num1 = savedInstanceState.getDouble("NUM1");
+        num2 = savedInstanceState.getDouble("NUM2");
+        operacion = savedInstanceState.getString("OPERACION");
+        isNewOp = savedInstanceState.getBoolean("IS_NEW_OP");
+        tvResultado.setText(savedInstanceState.getString("TEXTO_PANTALLA"));
     }
 }
