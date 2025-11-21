@@ -55,11 +55,11 @@ public class Selecciones extends Fragment {
 
     public void mostrarDialogoDeAlerta(CardView cardView) {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-        LayoutInflater inflater = requireActivity().getLayoutInflater();
+        LayoutInflater inflater = requireActivity().getLayoutInflater(); // convierte el XML en una vista
         View dialogView = inflater.inflate(R.layout.alert_dialog_custom, null);
         builder.setView(dialogView);
 
-        TextInputEditText input = dialogView.findViewById(R.id.tiet_new_card_name);
+        TextInputEditText input = dialogView.findViewById(R.id.nuevos_nombres);
         TextView cardTextView = cardView.findViewById(R.id.textoTarjeta);
 
         builder.setTitle("Cambiar Nombre de la Selección")
