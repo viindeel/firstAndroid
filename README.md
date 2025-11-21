@@ -46,22 +46,22 @@ Esta sección está organizada en dos pestañas utilizando un `ViewPager`:
 
 **Pantalla de Login y Registro:**
 
-![login.png](login.png)
-![register.png](register.png)
+![Captura de pantalla de la pantalla de login.](res/drawable/login.png)
+![Captura de pantalla de la pantalla de registro.](res/drawable/register.png)
 
 **Pantalla Principal con Saludo:**
 
-![bienvenida.png](bienvenida.png)
+![Captura de pantalla de la pantalla de bienvenida con un saludo personalizado.](res/drawable/bienvenida.png)
 
 **Pestañas de Equipos y Selecciones:**
 
-![juego_nombres.png](juego_nombres.png)
+![Captura de pantalla de la sección de pestañas mostrando la lista de equipos y selecciones.](res/drawable/juego_nombres.png)
 
 **Diálogo para Cambiar Nombre:**
 
-![dialogo_cambiar_nombre.png](dialogo_cambiar_nombre.png)
-![nombre_cambiado_seleccion.png](nombre_cambiado_seleccion.png)
+![Captura de pantalla del AlertDialog personalizado para cambiar el nombre de un equipo o selección.](res/drawable/dialogo_cambiar_nombre.png)
+![Captura de pantalla del elemento de CardView con el nombre actualizado.](res/drawable/nombre_cambiado_seleccion.png)
 
 **Calculadora:**
 
-![calculadora.png](calculadora.png)
+![Captura de pantalla de la Activity de la calculadora.](res/drawable/calculadora.png)
