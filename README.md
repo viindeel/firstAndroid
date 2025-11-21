@@ -1,44 +1,67 @@
-# First2526 - App de Registro y Login
+# FirstAndroid Project
 
-Esta es una aplicación sencilla para Android que demuestra un flujo completo de registro y autenticación de usuarios, incluyendo validación de formularios, almacenamiento seguro de credenciales y un saludo personalizado.
+Esta es una aplicación de Android desarrollada como parte de un proyecto de clase. La aplicación demuestra varias funcionalidades clave del desarrollo en Android, incluyendo un sistema de autenticación de usuarios, la gestión de fragmentos con `ViewPager` y `TabLayout`, y la interacción con elementos de la interfaz de usuario como `CardView` y `AlertDialog` personalizados.
 
-## Funcionalidades Principales
+## Características Principales
 
--   **Registro de Usuario:**
-    -   Un formulario solicita nombre de usuario, email y contraseña.
-    -   Se realizan validaciones para asegurar que los campos no estén vacíos, que el email tenga un formato válido y que las contraseñas coincidan.
-    -   La contraseña se hashea usando SHA-256 antes de ser guardada en `SharedPreferences` para mayor seguridad.
+La aplicación se divide en varias secciones, cada una con sus propias funcionalidades:
 
--   **Login de Usuario:**
-    -   El usuario inicia sesión con su nombre de usuario y contraseña.
-    -   La app verifica las credenciales contra los datos guardados en `SharedPreferences`.
-    -   Si el acceso es exitoso, el usuario es redirigido a la pantalla principal.
+### 1. Sistema de Autenticación
 
--   **Pantalla Principal:**
-    -   Muestra un mensaje de bienvenida personalizado, saludando al usuario por su nombre.
-    -   El nombre de usuario se transfiere desde la pantalla de Login a través de un `Bundle`.
+- **Registro de Usuario:**
+  - Un formulario permite a los nuevos usuarios registrarse con un nombre de usuario, email y contraseña.
+  - Se realizan validaciones para asegurar que todos los campos estén completos y que las contraseñas introducidas coincidan.
+  - Si hay un error, se muestran mensajes informativos al usuario.
 
-## Estilo y Diseño
+- **Login de Usuario:**
+  - Los usuarios registrados pueden acceder a la aplicación a través de una pantalla de login.
 
-The visual style of the application aims to be modern and consistent, with a theme reminiscent of a soccer field.
+### 2. Pantalla Principal y Navegación
 
--   **Paleta de Colores:** Se utiliza un degradado de verdes (`@color/cespedClaro` a `@color/cespedOscuro`) como fondo principal en todas las pantallas, creando una atmósfera fresca y unificada.
--   **Tipografía:** Se emplean fuentes personalizadas para darle un carácter único a la aplicación:
-    -   `maglisto`: Usada para el nombre de la app, aportando un toque estilizado.
-    -   `nueva` y `pompiere`: Usadas en diferentes partes de la interfaz para mejorar la jerarquía visual.
--   **Iconografía:** Se utilizan iconos de Material Design para mejorar la usabilidad en los campos de texto (usuario, email, contraseña).
+- **Mensaje de Bienvenida:** Tras iniciar sesión, el usuario es recibido con un saludo personalizado que incluye su nombre.
+- **Navegación:** Desde la pantalla principal, se puede acceder a dos secciones principales:
+  - La sección de Equipos y Selecciones.
+  - Una Calculadora.
+
+### 3. Galería de Equipos y Selecciones
+
+Esta sección está organizada en dos pestañas utilizando un `ViewPager`:
+
+- **Pestaña "Equipos":**
+  - Muestra una lista vertical de tarjetas (`CardView`).
+  - Cada tarjeta contiene el escudo y el nombre de un equipo de fútbol.
+
+- **Pestaña "Selecciones":**
+  - Sigue la misma estructura, pero muestra tarjetas con las banderas y nombres de selecciones nacionales.
+
+- **Funcionalidad Extra (Bonus):**
+  - Al hacer clic en cualquier tarjeta (ya sea de un equipo o una selección), se abre un **diálogo de alerta personalizado** (`AlertDialog`).
+  - Este diálogo permite al usuario **escribir un nuevo nombre** y, al pulsar "Aceptar", el texto de la tarjeta se actualiza dinámicamente.
+
+### 4. Calculadora
+
+- Una `Activity` separada que proporciona funcionalidades de una calculadora básica, incluyendo operaciones aritméticas.
 
 ## Capturas de Pantalla
 
+*(Aquí puedes añadir las capturas de pantalla de tu aplicación para mostrar cómo se ve cada sección)*
 
-**Pantalla de Bienvenida (Splash Screen)**
-![fotosplash.jpeg](app/src/main/res/drawable/fotosplash.jpeg)
+**Pantalla de Login y Registro:**
 
-**Pantalla de Registro**
-![register.jpeg](app/src/main/res/drawable/register.jpeg)
+`[Inserta aquí una captura de la pantalla de login]`
 
-**Pantalla de Login**
-![login.jpeg](app/src/main/res/drawable/login.jpeg)
+**Pantalla Principal con Saludo:**
 
-**Pantalla Principal**
-![principal.jpeg](app/src/main/res/drawable/principal.jpeg)
+`[Inserta aquí una captura de la pantalla principal]`
+
+**Pestañas de Equipos y Selecciones:**
+
+`[Inserta aquí una captura de la vista con las pestañas]`
+
+**Diálogo para Cambiar Nombre:**
+
+`[Inserta aquí una captura del AlertDialog en acción]`
+
+**Calculadora:**
+
+`[Inserta aquí una captura de la calculadora]`

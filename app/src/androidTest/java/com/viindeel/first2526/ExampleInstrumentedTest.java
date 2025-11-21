@@ -1,4 +1,4 @@
-package com.mcas2.first2526;
+package com.viindeel.first2526;
 
 import android.content.Context;
 

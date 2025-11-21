@@ -26,6 +26,11 @@
 
         <activity android:name=".Calculator" />
 
+        <!-- Actividad para las pestañas -->
+        <activity
+            android:name=".ui.frmanager.TabsActivity"
+            android:exported="false" />
+
         <activity
             android:name=".SplashScreen"
             android:exported="true">

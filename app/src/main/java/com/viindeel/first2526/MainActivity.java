@@ -1,4 +1,4 @@
-package com.mcas2.first2526;
+package com.viindeel.first2526;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,16 +13,16 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.mcas2.first2526.ui.frmanager.Paginador;
+import com.viindeel.first2526.ui.frmanager.TabsActivity; // Cambiado de Paginador a TabsActivity
 
 public class MainActivity extends AppCompatActivity {
 
     Button mainButton;
-
-    Button btnIrApeces;
+    Button btnIrANombres;
     Button btnIrCalculadora;
     TextView mainTV;
     int contador;
+    String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,50 +39,41 @@ public class MainActivity extends AppCompatActivity {
         mainButton = findViewById(R.id.mainButton);
         mainTV = findViewById(R.id.mainTV);
         btnIrCalculadora = findViewById(R.id.btnIrCalculadora);
-        btnIrApeces = findViewById(R.id.btnPeces);
-
+        btnIrANombres = findViewById(R.id.btnNombres);
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         String saludoInicial = "¡Bienvenido/a!";
-        String loginUserNameTIL = bundle.getString("userName");
-        saludoInicial = "¡Bienvenido/a, " + String.valueOf(loginUserNameTIL);
-        Toast.makeText(this, saludoInicial, Toast.LENGTH_SHORT).show();
+
         if (bundle != null) {
-            String userName = bundle.getString("EXTRA_USER");
+            userName = bundle.getString("userName");
             if (userName != null && !userName.isEmpty()) {
-                saludoInicial = "¡Bienvenido/a de nuevo, " + userName + "!";
+                saludoInicial = "¡Bienvenido/a, " + userName + "!";
+                Toast.makeText(this, saludoInicial, Toast.LENGTH_SHORT).show();
             }
         }
         mainTV.setText(saludoInicial);
 
         contador = 0;
-        mainButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                contador++;
-                mainTV.setText(String.valueOf(contador));
-            }
+        mainButton.setOnClickListener(v -> {
+            contador++;
+            mainTV.setText(String.valueOf(contador));
         });
 
-        if (btnIrApeces != null) {
-            btnIrApeces.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(MainActivity.this, Paginador.class);
-                    startActivity(i);
-                }
+        if (btnIrANombres != null) {
+            btnIrANombres.setOnClickListener(v -> {
+                // Apuntamos a TabsActivity para que la app no crashee
+                Intent i = new Intent(MainActivity.this, TabsActivity.class);
+                i.putExtra("userName", userName);
+                Toast.makeText(this, "Intenta adivinar todos", Toast.LENGTH_SHORT).show();
+                startActivity(i);
             });
         }
 
-
         if (btnIrCalculadora != null) {
-            btnIrCalculadora.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(MainActivity.this, Calculator.class);
-                    startActivity(i);
-                }
+            btnIrCalculadora.setOnClickListener(v -> {
+                Intent i = new Intent(MainActivity.this, Calculator.class);
+                startActivity(i);
             });
         }
     }

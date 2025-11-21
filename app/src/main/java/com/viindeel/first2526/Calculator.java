@@ -1,4 +1,4 @@
-package com.mcas2.first2526;
+package com.viindeel.first2526;
 
 import android.os.Bundle;
 import android.view.View;
@@ -21,20 +21,17 @@ public class Calculator extends AppCompatActivity {
 
         tvResultado = findViewById(R.id.pantallaResultados);
 
-        View.OnClickListener numberListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Button b = (Button) v;
-                if (isNewOp) {
-                    tvResultado.setText("");
-                    isNewOp = false;
-                }
-                String currentText = tvResultado.getText().toString();
-                if (b.getText().toString().equals(".") && currentText.contains(".")) {
-                    return;
-                }
-                tvResultado.append(b.getText().toString());
+        View.OnClickListener numberListener = v -> {
+            Button b = (Button) v;
+            if (isNewOp) {
+                tvResultado.setText("");
+                isNewOp = false;
             }
+            String currentText = tvResultado.getText().toString();
+            if (b.getText().toString().equals(".") && currentText.contains(".")) {
+                return;
+            }
+            tvResultado.append(b.getText().toString());
         };
 
         int[] numberIds = {R.id.button17, R.id.button13, R.id.button14, R.id.button15, R.id.button12,
@@ -45,16 +42,25 @@ public class Calculator extends AppCompatActivity {
             if (btn != null) btn.setOnClickListener(numberListener);
         }
 
-        View.OnClickListener opListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Button b = (Button) v;
-                String aux = tvResultado.getText().toString();
+        View.OnClickListener opListener = v -> {
+            Button b = (Button) v;
+            String op = b.getText().toString();
+            String aux = tvResultado.getText().toString();
+
+            if (op.equals("%")) {
                 if (!aux.isEmpty()) {
-                    num1 = Double.parseDouble(aux);
-                    operacion = b.getText().toString();
+                    double valor = Double.parseDouble(aux);
+                    double resultado = valor / 100;
+                    tvResultado.setText(String.valueOf(resultado));
                     isNewOp = true;
                 }
+                return;
+            }
+
+            if (!aux.isEmpty()) {
+                num1 = Double.parseDouble(aux);
+                operacion = op;
+                isNewOp = true;
             }
         };
 
@@ -66,55 +72,39 @@ public class Calculator extends AppCompatActivity {
 
         Button btnIgual = findViewById(R.id.button20);
         if (btnIgual != null) {
-            btnIgual.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    calcular();
-                }
-            });
+            btnIgual.setOnClickListener(v -> calcular());
         }
 
         Button btnClear = findViewById(R.id.button4);
         if (btnClear != null) {
-            btnClear.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    tvResultado.setText("0");
-                    num1 = 0;
-                    num2 = 0;
-                    operacion = "";
-                    isNewOp = true;
-                }
+            btnClear.setOnClickListener(v -> {
+                tvResultado.setText("0");
+                num1 = 0;
+                num2 = 0;
+                operacion = "";
+                isNewOp = true;
             });
         }
 
         Button btnMasMenos = findViewById(R.id.button3);
         if (btnMasMenos != null) {
-            btnMasMenos.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String aux = tvResultado.getText().toString();
-                    if (!aux.isEmpty() && !aux.equals("0")) {
-                        try {
-                            double valor = Double.parseDouble(aux);
-                            // Multiplicamos por -1 para cambiar el signo
-                            valor = valor * -1;
-
-                            // Truco estético si es entero ( 5.0), quita el .0 para que quede bonito
-                            if (valor % 1 == 0) {
-                                tvResultado.setText(String.valueOf((int) valor));
-                            } else {
-                                tvResultado.setText(String.valueOf(valor));
-                            }
-                        } catch (NumberFormatException e) {
+            btnMasMenos.setOnClickListener(v -> {
+                String aux = tvResultado.getText().toString();
+                if (!aux.isEmpty() && !aux.equals("0")) {
+                    try {
+                        double valor = Double.parseDouble(aux);
+                        valor = valor * -1;
+                        if (valor % 1 == 0) {
+                            tvResultado.setText(String.valueOf((int) valor));
+                        } else {
+                            tvResultado.setText(String.valueOf(valor));
                         }
+                    } catch (NumberFormatException e) {
                     }
                 }
             });
         }
     }
-
-
 
     private void calcular() {
         String aux = tvResultado.getText().toString();
@@ -128,9 +118,6 @@ public class Calculator extends AppCompatActivity {
                     break;
                 case "-":
                     resultado = num1 - num2;
-                    break;
-                case "%":
-                    resultado = num1 % num2;
                     break;
                 case "*":
                     resultado = num1 * num2;

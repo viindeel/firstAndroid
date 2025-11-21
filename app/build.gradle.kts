@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.mcas2.first2526"
+    namespace = "com.viindeel.first2526"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.mcas2.first2526"
+        applicationId = "com.viindeel.first2526"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
