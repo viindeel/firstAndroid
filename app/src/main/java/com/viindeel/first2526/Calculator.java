@@ -12,7 +12,7 @@ public class Calculator extends AppCompatActivity {
     private double num1 = 0;
     private double num2 = 0;
     private String operacion = "";
-    private boolean isNewOp = true;
+    private boolean isNewOp = true; // Flag para saber si se ha pulsado un operador nuevo
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
