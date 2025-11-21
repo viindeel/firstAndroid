@@ -51,7 +51,7 @@ Esta sección está organizada en dos pestañas utilizando un `ViewPager`:
 
 **Pantalla Principal con Saludo:**
 
-![Captura de pantalla de la pantalla de bienvenida con un saludo personalizado.](res/drawable/bienvenida.png)
+![Captura de pantalla de la pantalla de bienvenida con un saludo personalizado .](res/drawable/bienvenida.png)
 
 **Pestañas de Equipos y Selecciones:**
 
