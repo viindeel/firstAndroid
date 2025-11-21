@@ -44,24 +44,24 @@ Esta sección está organizada en dos pestañas utilizando un `ViewPager`:
 
 ## Capturas de Pantalla
 
-*(Aquí puedes añadir las capturas de pantalla de tu aplicación para mostrar cómo se ve cada sección)*
-
 **Pantalla de Login y Registro:**
 
-`[Inserta aquí una captura de la pantalla de login]`
+![login.png](login.png)
+![register.png](register.png)
 
 **Pantalla Principal con Saludo:**
 
-`[Inserta aquí una captura de la pantalla principal]`
+![bienvenida.png](bienvenida.png)
 
 **Pestañas de Equipos y Selecciones:**
 
-`[Inserta aquí una captura de la vista con las pestañas]`
+![juego_nombres.png](juego_nombres.png)
 
 **Diálogo para Cambiar Nombre:**
 
-`[Inserta aquí una captura del AlertDialog en acción]`
+![dialogo_cambiar_nombre.png](dialogo_cambiar_nombre.png)
+![nombre_cambiado_seleccion.png](nombre_cambiado_seleccion.png)
 
 **Calculadora:**
 
-`[Inserta aquí una captura de la calculadora]`
+![calculadora.png](calculadora.png)

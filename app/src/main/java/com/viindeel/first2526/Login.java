@@ -103,7 +103,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intentRegister = new Intent(Login.this, Register.class);
                 startActivity(intentRegister);
-                Toast.makeText(Login.this, "Bienvenido de nuevo!" + loginUserNameTIL, Toast.LENGTH_SHORT).show();
+                Toast.makeText(Login.this, "Completa el registro y disfruta :)", Toast.LENGTH_SHORT).show();
             }
         });
 
