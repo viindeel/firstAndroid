@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,9 +13,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.mcas2.first2526.ui.frmanager.Paginador;
+
 public class MainActivity extends AppCompatActivity {
 
     Button mainButton;
+
+    Button btnIrApeces;
     Button btnIrCalculadora;
     TextView mainTV;
     int contador;
@@ -34,10 +39,15 @@ public class MainActivity extends AppCompatActivity {
         mainButton = findViewById(R.id.mainButton);
         mainTV = findViewById(R.id.mainTV);
         btnIrCalculadora = findViewById(R.id.btnIrCalculadora);
+        btnIrApeces = findViewById(R.id.btnPeces);
+
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         String saludoInicial = "¡Bienvenido/a!";
+        String loginUserNameTIL = bundle.getString("userName");
+        saludoInicial = "¡Bienvenido/a, " + String.valueOf(loginUserNameTIL);
+        Toast.makeText(this, saludoInicial, Toast.LENGTH_SHORT).show();
         if (bundle != null) {
             String userName = bundle.getString("EXTRA_USER");
             if (userName != null && !userName.isEmpty()) {
@@ -54,6 +64,17 @@ public class MainActivity extends AppCompatActivity {
                 mainTV.setText(String.valueOf(contador));
             }
         });
+
+        if (btnIrApeces != null) {
+            btnIrApeces.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(MainActivity.this, Paginador.class);
+                    startActivity(i);
+                }
+            });
+        }
+
 
         if (btnIrCalculadora != null) {
             btnIrCalculadora.setOnClickListener(new View.OnClickListener() {

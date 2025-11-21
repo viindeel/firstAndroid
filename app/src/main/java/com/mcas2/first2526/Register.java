@@ -54,6 +54,7 @@ public class Register extends AppCompatActivity {
                 if (!isEmailCorrect(registerTILemail)) {
                     registerTILemail.setErrorEnabled(true);
                     registerTILemail.setError("Tu email está mal escrito");
+                    Toast.makeText(Register.this, "Corrige el email", Toast.LENGTH_SHORT).show();
                     canContinue = false;
                 }
 
