@@ -59,7 +59,7 @@ public class Equipos extends Fragment {
         View dialogView = inflater.inflate(R.layout.alert_dialog_custom, null);
         builder.setView(dialogView);
 
-        TextInputEditText input = dialogView.findViewById(R.id.tiet_new_card_name);
+        TextInputEditText input = dialogView.findViewById(R.id.nuevos_nombres);
         TextView cardTextView = cardView.findViewById(R.id.textoTarjeta);
 
         builder.setTitle("Cambiar Nombre del Equipo")
